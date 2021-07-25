@@ -45,8 +45,31 @@ app.get('/getChannels', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    console.log('A user connected')
+    console.log('New Client Connected')
     socket.emit('connection', null)
+    socket.on('channel-join', id => {
+        console.log('Channel Join', id)
+        STATIC_CHANNELS.forEach(c => {
+            if(c.id === id) {
+                if(c.sockets.indexOf(socket.id) === -1){
+                    c.sockets.push(socket.id)
+                    c.participants++
+                    io.emit('channel', c)
+                }
+            } else {
+                let index = c.sockets.indexOf(socket.id)
+                if(index != -1){
+                    c.sockets.splice(index, 1)
+                    c.participants--
+                    io.emit('channel', c)
+                }
+            }
+        })
+
+        console.log(STATIC_CHANNELS)
+
+        return id
+    })
 })
 
 server.listen(PORT, () => {
