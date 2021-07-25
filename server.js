@@ -19,11 +19,29 @@ const io = require('socket.io')(server, {
     }
 })
 
+const STATIC_CHANNELS = [{
+    name: 'Global Chat',
+    participants: 0,
+    id: 1,
+    sockets: []
+}, {
+    name: 'Funny',
+    participants: 0,
+    id: 2,
+    sockets: []
+}]
+
 // middlewares
 app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Hello from the backend')
+})
+
+app.get('/getChannels', (req, res) => {
+    res.json({
+        channels: STATIC_CHANNELS
+    })
 })
 
 io.on('connection', (socket) => {
