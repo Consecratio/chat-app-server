@@ -19,6 +19,8 @@ const io = require('socket.io')(http, {
 
 io.on('connection', socket => {
     const username = socket.handshake.query.username
+    const color = socket.handshake.query.color
+
     console.log(username, 'has connected!')
 
     socket.on('disconnect', () => {
