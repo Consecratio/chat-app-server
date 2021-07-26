@@ -10,12 +10,7 @@ const app = express()
 const PORT = process.env.PORT || 3001
 const http = require('http').createServer(app)
 const rowdyResults = rowdy.begin(app)
-const io = require('socket.io')(http, {
-    cors: {
-        origin: process.env.ORIGIN,
-        methods: ['GET', 'POST']
-    }
-})
+const io = require('socket.io')(http)
 
 io.on('connection', socket => {
     const username = socket.handshake.query.username
