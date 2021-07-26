@@ -19,7 +19,7 @@ const io = require('socket.io')(http, {
 })
 
 // middlewares
-app.use(cors())
+// app.use(cors())
 
 io.on('connection', socket => {
     const username = socket.handshake.query.username
@@ -36,7 +36,7 @@ io.on('connection', socket => {
     })
 })
 
-server.listen(PORT, () => {
+http.listen(PORT, () => {
     rowdyResults.print()
     console.log(`Listening on port: ${PORT}`)
 })
