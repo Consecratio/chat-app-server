@@ -3,7 +3,6 @@ require('dotenv').config()
 
 // required for server
 const express = require('express')
-// const cors = require('cors')
 const rowdy = require('rowdy-logger')
 
 // configure express app
@@ -17,9 +16,6 @@ const io = require('socket.io')(http, {
         methods: ['GET', 'POST']
     }
 })
-
-// middlewares
-// app.use(cors())
 
 io.on('connection', socket => {
     const username = socket.handshake.query.username
