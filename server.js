@@ -7,10 +7,14 @@ const rowdy = require('rowdy-logger')
 
 // configure express app
 const app = express()
-const PORT = process.env.PORT || 3001
 const http = require('http').createServer(app)
 const rowdyResults = rowdy.begin(app)
-const io = require('socket.io')(http)
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "https://practical-visvesvaraya-c80ca0.netlify.app",
+        methods: ["GET", "POST"]
+    }
+})
 
 io.on('connection', socket => {
     const username = socket.handshake.query.username
@@ -29,7 +33,7 @@ io.on('connection', socket => {
     })
 })
 
-http.listen(PORT, () => {
+http.listen(process.env.PORT || 3000, () => {
     rowdyResults.print()
     console.log(`Listening on port: ${PORT}`)
 })
