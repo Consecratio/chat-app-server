@@ -35,5 +35,5 @@ io.on('connection', socket => {
 
 http.listen(process.env.PORT || 3000, () => {
     rowdyResults.print()
-    console.log(`Listening on port: ${PORT}`)
+    console.log(`Listening on port: ${process.env.PORT}`)
 })
