@@ -10,6 +10,7 @@ Client side can be found [here](https://github.com/Consecratio/chat-app-client).
 - HTML, CSS, JavaScript, Bootstrap
 - Express
 - Axios
+- Socket.io
 
 ## MVP
 ---
