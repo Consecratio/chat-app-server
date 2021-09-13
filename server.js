@@ -11,7 +11,7 @@ const http = require('http').createServer(app)
 const rowdyResults = rowdy.begin(app)
 const io = require('socket.io')(http, {
     cors: {
-        origin: process.env.ORIGIN,
+        origin: "https://practical-visvesvaraya-c80ca0.netlify.app",
         methods: ["GET", "POST"]
     }
 })
